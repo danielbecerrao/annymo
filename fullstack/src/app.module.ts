@@ -19,6 +19,8 @@ const getTypeOrmConfig = (): TypeOrmModuleOptions => {
     username: dbUser,
     password: dbPassword,
     database: dbName,
+    uuidExtension: 'pgcrypto',
+    installExtensions: true,
     autoLoadEntities: true,
     synchronize: true,
   };

@@ -1,5 +1,6 @@
 import { Transform, Type } from 'class-transformer';
 import {
+  IsDefined,
   IsEmail,
   IsOptional,
   IsString,
@@ -48,6 +49,7 @@ export class CreateContactWebhookDto {
   @MaxLength(60)
   public eventType: string;
 
+  @IsDefined()
   @ValidateNested()
   @Type(() => ContactWebhookPayloadDto)
   public payload: ContactWebhookPayloadDto;
