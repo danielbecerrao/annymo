@@ -94,6 +94,18 @@ describe('ContactsController (e2e)', () => {
     jest.clearAllMocks();
   });
 
+  it('POST /contacts/webhook returns 400 when payload is missing', async () => {
+    await request(server())
+      .post('/contacts/webhook')
+      .send({
+        source: 'landing-page',
+        eventType: 'contact-submitted',
+      })
+      .expect(400);
+
+    expect(contactsServiceMock.createFromWebhook).not.toHaveBeenCalled();
+  });
+
   it('POST /contacts/webhook returns 400 for invalid payload', () => {
     return request(server())
       .post('/contacts/webhook')
