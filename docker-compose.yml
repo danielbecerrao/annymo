@@ -17,6 +17,10 @@ services:
       DB_PASSWORD: postgres
       DB_NAME: fullstack_db
       CHOKIDAR_USEPOLLING: "true"
+      CHOKIDAR_INTERVAL: 300
+      WATCHPACK_POLLING: "true"
+      TSC_WATCHFILE: FixedPollingInterval
+      TSC_WATCHDIRECTORY: FixedPollingInterval
     ports:
       - "3000:3000"
     depends_on:
@@ -25,7 +29,7 @@ services:
     volumes:
       - ./fullstack:/app
       - fullstack_node_modules:/app/node_modules
-    command: npm run start:dev
+    command: sh -c "npm ci && npm run start:docker"
 
   postgres:
     image: postgres:16-alpine

@@ -1,0 +1,23 @@
+info:
+  name: POST /contacts
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{baseUrl}}/contacts"
+  body:
+    type: json
+    data: |-
+      {
+        "fullName": "Daniel",
+        "email": "daniel-3223@hotmail.com",
+        "message": "ksjhfjls skfs skfjsdlk"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

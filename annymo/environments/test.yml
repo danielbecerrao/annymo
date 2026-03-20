@@ -1,0 +1,6 @@
+name: test
+variables:
+  - name: baseUrl
+    value: http://127.0.0.1:3000
+  - name: contactId
+    value: 4049b637-1ed0-4759-88a6-4fd06fad9438
