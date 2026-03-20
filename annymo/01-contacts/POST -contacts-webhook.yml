@@ -1,0 +1,28 @@
+info:
+  name: POST /contacts/webhook
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{baseUrl}}/contacts/webhook"
+  body:
+    type: json
+    data: |-
+      {
+        "source": "landing-page",
+        "eventType": "contact-submitted",
+        "payload": {
+          "fullName": "Ana Becerra",
+          "email": "ana-4488@example.com",
+          "phone": "3001234567",
+          "message": "Hola, quiero mas informacion."
+        }
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

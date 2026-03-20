@@ -1,0 +1,21 @@
+info:
+  name: PATCH /contacts/:id
+  type: http
+  seq: 4
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/contacts/{{contactId}}"
+  body:
+    type: json
+    data: |-
+      {
+        "message": "Mensaje actualizado desde Bruno"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

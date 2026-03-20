@@ -1,0 +1,52 @@
+import { Transform } from 'class-transformer';
+import {
+  IsEmail,
+  IsOptional,
+  IsString,
+  MaxLength,
+  MinLength,
+} from 'class-validator';
+import { normalizeString } from '../../common/utils/normalize-string.util';
+
+export class UpdateContactDto {
+  @IsOptional()
+  @Transform(({ value }: { value: unknown }) => normalizeString(value))
+  @IsString()
+  @MinLength(2)
+  @MaxLength(120)
+  public fullName?: string;
+
+  @IsOptional()
+  @Transform(({ value }: { value: unknown }) => normalizeString(value, true))
+  @IsEmail()
+  @MaxLength(180)
+  public email?: string;
+
+  @IsOptional()
+  @Transform(({ value }: { value: unknown }) => normalizeString(value))
+  @IsString()
+  @MinLength(7)
+  @MaxLength(30)
+  public phone?: string;
+
+  @IsOptional()
+  @Transform(({ value }: { value: unknown }) => normalizeString(value))
+  @IsString()
+  @MinLength(10)
+  @MaxLength(2000)
+  public message?: string;
+
+  @IsOptional()
+  @Transform(({ value }: { value: unknown }) => normalizeString(value, true))
+  @IsString()
+  @MinLength(2)
+  @MaxLength(60)
+  public source?: string;
+
+  @IsOptional()
+  @Transform(({ value }: { value: unknown }) => normalizeString(value, true))
+  @IsString()
+  @MinLength(2)
+  @MaxLength(60)
+  public eventType?: string;
+}
