@@ -49,6 +49,36 @@ services:
       timeout: 5s
       retries: 5
 
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: n8n
+    restart: unless-stopped
+    env_file:
+      - ./automatizacion/.env
+    environment:
+      DB_TYPE: postgresdb
+      DB_POSTGRESDB_DATABASE: fullstack_db
+      DB_POSTGRESDB_HOST: postgres
+      DB_POSTGRESDB_PORT: 5432
+      DB_POSTGRESDB_USER: postgres
+      DB_POSTGRESDB_PASSWORD: postgres
+      DB_POSTGRESDB_SCHEMA: n8n
+      N8N_HOST: localhost
+      N8N_PORT: 5678
+      N8N_PROTOCOL: http
+      N8N_SECURE_COOKIE: "false"
+      N8N_BLOCK_ENV_ACCESS_IN_NODE: "false"
+      TZ: America/Bogota
+      GENERIC_TIMEZONE: America/Bogota
+    ports:
+      - "5678:5678"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - n8n_data:/home/node/.n8n
+
 volumes:
   postgres_data:
   fullstack_node_modules:
+  n8n_data:
